@@ -1,0 +1,20 @@
+{
+    "description": "Provides a widget for the DAV training tool",
+    "type": "neos-package",
+    "name": "cron/dav-fobi",
+    "require": {
+        "neos/flow": "*",
+        "firebase/php-jwt": "*",
+        "cron/neos-obisintegration": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "CRON\\DAV\\Fobi\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "CRON.DAV.Fobi"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{namespace neos=Neos\Neos\ViewHelpers}
+<div class="widget-container-fobi">
+	<f:switch expression="{widget}">
+		<f:case value="questionnaire">
+			<div class="widget-container" data-type="{widget}" data-shape="{questionnaireShape}" data-questionnaireId="{questionnaireId}">
+				<!-- Renders widget content here -->
+			</div>
+		</f:case>
+		<f:case value="training">
+			<div class="widget-container" data-type="{widget}" data-training-type="single" data-training-id="{trainingId}" data-disturber="{f:if(condition: '{trainingDisturber}', then: 'true', else: 'false')}" data-effort="{f:if(condition: '{trainingEffort}', then: 'true', else: 'false')}" data-points="{f:if(condition: '{trainingPoints}', then: 'true', else: 'false')}">
+				<!-- Renders widget content here -->
+			</div>
+		</f:case>
+		<f:case value="trainingMulti">
+			<div class="widget-container" data-type="training" data-training-type="{trainingType}">
+				<!-- Renders widget content here -->
+			</div>
+		</f:case>
+		<f:case value="cockpit">
+			<div class="widget-container" data-type="{widget}" data-training-type="{cockpitShape}">
+				<!-- Renders widget content here -->
+			</div>
+		</f:case>
+	</f:switch>
+</div>

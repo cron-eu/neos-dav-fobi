@@ -1,0 +1,30 @@
+CRON:
+  DAV:
+    Fobi:
+      widgetLoaderUri: 'https://widgets.davfobi.de/loader.js'
+      token:
+        # The issuer of the token
+        issuer: ''
+        # The target domain for which the token was issued.
+        audience: ''
+        # Password for basic auth when contacting  server
+        secret: ''
+        # Token expiration: a string which can be passed to the php DateInterval constructor
+        expiresAfter: ''
+        rolesMapping:
+          # Map flow roles to strings used in Fobi
+          'CRON.DazSite:DazSubscriber': 'DAZ-Abo'
+          'CRON.DazSite:ELearningUser': 'eLearning-Benutzer'
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        CRON.DAV.Fobi: true
+  nodeTypes:
+    groups:
+      widget:
+        position: 'after plugins'
+        label: Widget
+  Fusion:
+    defaultContext:
+      CRON.BCMFobi: CRON\DAV\Fobi\Eel\Helper\BCMFobiHelper

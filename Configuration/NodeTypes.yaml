@@ -1,0 +1,133 @@
+'CRON.DAV.Fobi:FobiWidget':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: Fobi-Widget
+    icon: icon-leanpub
+    group: widget
+    inspector:
+      groups:
+        option:
+          label: option
+          position: 1
+  properties:
+    widget:
+      type: string
+      defaultValue: 'questionnaire'
+      ui:
+        label: 'Widget Type'
+        reloadPageIfChanged: true
+        inspector:
+          group: 'option'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              questionnaire:
+                label: 'Questionnaire'
+              training:
+                label: 'Training'
+              trainingMulti:
+                label: 'Training Multi'
+              cockpit:
+                label: 'Cockpit'
+    questionnaireShape:
+      type: string
+      defaultValue: 'min'
+      ui:
+        label: 'Shape'
+        help:
+          message: 'Shape expression'
+        reloadIfChanged: true
+        inspector:
+          group: 'option'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          hidden: "ClientEval:node.properties.widget == 'questionnaire' ? false : true"
+          editorOptions:
+            values:
+              min:
+                label: 'min'
+              max:
+                label: 'max'
+    questionnaireId:
+      type: string
+      ui:
+        label: 'Questionnaire Id'
+        reloadIfChanged: true
+        help:
+          message: 'The ID can be determined from the URL when editing a questionnaire.'
+        inspector:
+          group: 'option'
+          hidden: "ClientEval:node.properties.widget == 'questionnaire' ? false : true"
+    trainingId:
+      type: string
+      ui:
+        label: 'Training Id'
+        reloadIfChanged: true
+        help:
+          message: 'The ID can be determined from the URL when editing a questionnaire.'
+        inspector:
+          group: 'option'
+          hidden: "ClientEval:node.properties.widget == 'training' ? false : true"
+    trainingDisturber:
+      type: boolean
+      ui:
+        label: 'Disturber'
+        help:
+          message: 'Show disturber with end date yes / no'
+        inspector:
+          group: 'option'
+          hidden: "ClientEval:node.properties.widget == 'training' ? false : true"
+    trainingEffort:
+      type: boolean
+      ui:
+        label: 'Effort'
+        help:
+          message: 'Show end date and learning effort yes / no'
+        inspector:
+          group: 'option'
+          hidden: "ClientEval:node.properties.widget == 'training' ? false : true"
+    trainingPoints:
+      type: boolean
+      ui:
+        label: 'Points'
+        help:
+          message: 'Show BAK points yes / no'
+        inspector:
+          group: 'option'
+          hidden: "ClientEval:node.properties.widget == 'training' ? false : true"
+    cockpitShape:
+      type: string
+      defaultValue: 'min'
+      ui:
+        label: 'Shape'
+        help:
+          message: 'Shape expression'
+        reloadIfChanged: true
+        inspector:
+          group: 'option'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          hidden: "ClientEval:node.properties.widget == 'cockpit' ? false : true"
+          editorOptions:
+            values:
+              min:
+                label: 'min'
+              max:
+                label: 'max'
+    trainingType:
+      type: string
+      defaultValue: 'multitext'
+      ui:
+        label: 'Target mode'
+        reloadIfChanged: true
+        inspector:
+          group: 'option'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          hidden: "ClientEval:node.properties.widget == 'trainingMulti' ? false : true"
+          editorOptions:
+            values:
+              multi-text:
+                label: 'multi text'
+              multi-teaser:
+                label: 'multi teaser'
+              multi-slider:
+                label: 'multi slider'

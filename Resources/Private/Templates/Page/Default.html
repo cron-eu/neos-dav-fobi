@@ -1,0 +1,14 @@
+<head>
+	<f:section name="headScripts">
+			<f:security.ifAuthenticated>
+				<script type="text/javascript">var davJWT = "{jwt}";</script>
+			</f:security.ifAuthenticated>
+	</f:section>
+</head>
+<body>
+	<f:section name="bodyScripts">
+		<f:if condition="{FobiWidgetExists}">
+				<script src="{FobiUri}" type="text/javascript"></script>
+		</f:if>
+	</f:section>
+</body>
