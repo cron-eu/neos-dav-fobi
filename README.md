@@ -29,7 +29,7 @@ Configure the repo in composer.json
 Then use composer to install this package:
 
 ```bash
-composer require cron/cron-dav-fobi:dev-master
+composer require cron/dav-fobi:dev-master
 ```
 
 
