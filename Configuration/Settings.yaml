@@ -20,11 +20,11 @@ Neos:
     fusion:
       autoInclude:
         CRON.DAV.Fobi: true
-  nodeTypes:
-    groups:
-      widget:
-        position: 'after plugins'
-        label: Widget
+    nodeTypes:
+      groups:
+        widget:
+          position: 'after plugins'
+          label: Widget
   Fusion:
     defaultContext:
       CRON.BCMFobi: CRON\DAV\Fobi\Eel\Helper\BCMFobiHelper
