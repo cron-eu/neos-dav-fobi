@@ -10,7 +10,7 @@ CRON:
         # Password for basic auth when contacting  server
         secret: ''
         # Token expiration: a string which can be passed to the php DateInterval constructor
-        expiresAfter: ''
+        expiresAfter: 'PT6H'
         rolesMapping:
           # Map flow roles to strings used in Fobi
           'CRON.DazSite:DazSubscriber': 'DAZ-Abo'
