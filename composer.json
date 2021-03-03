@@ -14,7 +14,10 @@
     },
     "extra": {
         "neos": {
-            "package-key": "CRON.DAV.Fobi"
+            "package-key": "CRON.DAV.Fobi",
+            "loading-order": {
+              "after": [ "neos/neos", "cron/neos-davptaheute-site" ]
+            }
         }
     }
 }
