@@ -51,6 +51,11 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
             );
             return '';
         }
+
+        if (!$userData) {
+            return '';
+        }
+
         return $this->createToken(
             $userData['email'],
             $userData['firstName'],
