@@ -2,6 +2,10 @@
 
 namespace CRON\DAV\Fobi\Eel\Helper;
 
+use CRON\ObisIntegration\Service\ObisService;
+use DateInterval;
+use DateTime;
+use Exception;
 use Neos\Eel\ProtectedContextAwareInterface;
 use /** @noinspection PhpUnusedAliasInspection */ Neos\Flow\Annotations as Flow;
 use Firebase\JWT\JWT;
@@ -14,10 +18,9 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
 
     /**
      * @Flow\Inject
-     * @var \CRON\ObisIntegration\Service\ObisService
+     * @var ObisService
      */
     protected $obis;
-
     /**
      * @Flow\Inject
      * @var LoggerInterface
@@ -37,18 +40,17 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
      *
      * @throws InvalidConfigurationException
      */
-    public function getToken()
+    public function getToken(): string
     {
         try {
             $userData = $this->obis->getUserData();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->warning(
                 sprintf('BCMFobiHelper::getToken: Error while fetching OBIS userData: %s', $e->getMessage()),
                 LogEnvironment::fromMethodName(__METHOD__)
             );
             return '';
         }
-
         return $this->createToken(
             $userData['email'],
             $userData['firstName'],
@@ -69,21 +71,21 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
      *
      * @throws InvalidConfigurationException
      */
-    protected function createToken($email, $firstName, $lastName, $roles)
+    protected function createToken(string $email, string $firstName, string $lastName, array $roles): string
     {
         if (empty($email)) {
             return '';
         }
 
         try {
-            $expiresAfter = new \DateInterval($this->settings['token']['expiresAfter']);
-        } catch (\Exception $e) {
+            $expiresAfter = new DateInterval($this->settings['token']['expiresAfter']);
+        } catch (Exception $e) {
             throw new InvalidConfigurationException(
                 sprintf('CRON.DazSite.BCMfobi.expiresAfter setting is invalid: %s', $this->settings['expiresAfter'])
             );
         }
-        $expirationDate = (new \DateTime())->add($expiresAfter);
-        $issuedDate = new \DateTime();
+        $expirationDate = (new DateTime())->add($expiresAfter);
+        $issuedDate = new DateTime();
 
         $token = [
             "iss" => $this->settings['token']['issuer'],
@@ -99,7 +101,7 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
         try {
             $key = $this->settings['token']['secret'];
             $jwt = JWT::encode($token, $key);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->warning(
                 sprintf('BCMFobiHelper::createToken: Error encoding token: %s', $e->getMessage()),
                 LogEnvironment::fromMethodName(__METHOD__)
@@ -118,19 +120,17 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
      * @param array $roles A list of flow roles
      * @return array
      */
-    protected function getRoles($roles)
+    protected function getRoles($roles): array
     {
         if (!$roles) {
             return [];
         }
-        $rolesMapped = array_map(function ($role) {
+        return array_map(function ($role) {
             if (isset($this->settings['token']['rolesMapping'][$role])) {
                 $role = $this->settings['token']['rolesMapping'][$role];
             }
             return $role;
         }, $roles);
-
-        return $rolesMapped;
     }
 
     /**
@@ -140,7 +140,7 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
      *
      * @return boolean
      */
-    public function allowsCallOfMethod($methodName)
+    public function allowsCallOfMethod($methodName): bool
     {
         return true;
     }
