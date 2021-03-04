@@ -3,7 +3,9 @@
     "type": "neos-package",
     "name": "cron/dav-fobi",
     "require": {
+        "neos/neos": "*",
         "neos/flow": "*",
+        "neos/eel": "*",
         "firebase/php-jwt": "*",
         "cron/neos-obisintegration": "*"
     },
@@ -14,10 +16,7 @@
     },
     "extra": {
         "neos": {
-            "package-key": "CRON.DAV.Fobi",
-            "loading-order": {
-              "after": [ "neos/neos", "cron/neos-davptaheute-site" ]
-            }
+            "package-key": "CRON.DAV.Fobi"
         }
     }
 }
