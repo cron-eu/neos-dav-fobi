@@ -86,7 +86,7 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
             $expiresAfter = new DateInterval($this->settings['token']['expiresAfter']);
         } catch (Exception $e) {
             throw new InvalidConfigurationException(
-                sprintf('CRON.DazSite.BCMfobi.expiresAfter setting is invalid: %s', $this->settings['expiresAfter'])
+                sprintf('CRON.DAV.Fobi.token.expiresAfter setting is invalid: %s', $this->settings['expiresAfter'])
             );
         }
         $expirationDate = (new DateTime())->add($expiresAfter);
@@ -120,7 +120,7 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
     /**
      * Map flow roles to strings to be used in BCMFobi
      *
-     * Use the CRON.DazSite.BCMfobi.rolesMapping setting
+     * Use the CRON.DAV.Fobi.rolesMapping setting
      *
      * @param array $roles A list of flow roles
      * @return array
@@ -131,8 +131,8 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
             return [];
         }
         return array_map(function ($role) {
-            if (isset($this->settings['token']['rolesMapping'][$role])) {
-                $role = $this->settings['token']['rolesMapping'][$role];
+            if (isset($this->settings['rolesMapping'][$role])) {
+                $role = $this->settings['rolesMapping'][$role];
             }
             return $role;
         }, $roles);
