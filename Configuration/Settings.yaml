@@ -11,7 +11,7 @@ CRON:
         secret: '%env:DAV_FOBI_SECRET%'
         # Token expiration: a string which can be passed to the php DateInterval constructor
         expiresAfter: '%env:DAV_FOBI_EXPIRESAFTER%'
-        rolesMapping:
-          # Map flow roles to strings used in Fobi, i.e.:
-          #'CRON.DazSite:DazSubscriber': 'DAZ-Abo'
-          #'CRON.DazSite:ELearningUser': 'eLearning-Benutzer'
+      rolesMapping:
+        # Map flow roles to strings used in Fobi, i.e.:
+        #'CRON.DazSite:DazSubscriber': 'DAZ-Abo'
+        #'CRON.DazSite:ELearningUser': 'eLearning-Benutzer'
