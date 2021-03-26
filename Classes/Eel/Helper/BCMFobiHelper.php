@@ -2,25 +2,26 @@
 
 namespace CRON\DAV\Fobi\Eel\Helper;
 
-use CRON\ObisIntegration\Service\ObisService;
 use DateInterval;
 use DateTime;
 use Exception;
 use Neos\Eel\ProtectedContextAwareInterface;
-use /** @noinspection PhpUnusedAliasInspection */ Neos\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Firebase\JWT\JWT;
 use Neos\Flow\Configuration\Exception\InvalidConfigurationException;
 use Neos\Flow\Log\Utility\LogEnvironment;
+use Neos\Flow\Session\Exception\SessionNotStartedException;
 use Psr\Log\LoggerInterface as LoggerInterface;
+use CRON\ObisIntegration\Service\DavUserService;
 
 class BCMFobiHelper implements ProtectedContextAwareInterface
 {
 
     /**
      * @Flow\Inject
-     * @var ObisService
+     * @var DavUserService
      */
-    protected $obis;
+    protected $davUserService;
     /**
      * @Flow\Inject
      * @var LoggerInterface
@@ -39,44 +40,39 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
      * @return string A token identifying the user, or an empty string if there is no user
      *
      * @throws InvalidConfigurationException
+     * @throws \Neos\Flow\Exception
+     * @throws SessionNotStartedException
      */
     public function getToken(): string
     {
-        try {
-            $userData = $this->obis->getUserData();
-        } catch (Exception $e) {
-            $this->logger->warning(
-                sprintf('BCMFobiHelper::getToken: Error while fetching OBIS userData: %s', $e->getMessage()),
-                LogEnvironment::fromMethodName(__METHOD__)
-            );
+        $davUser = $this->davUserService->getCurrentDavUser();
+        if ($davUser == null) {
             return '';
         }
-
-        if (!$userData) {
-            return '';
-        }
+        $username = $davUser->getEmailAddress();
+        $userId = $this->davUserService->getUserId($username);
 
         return $this->createToken(
-            $userData['email'],
-            $userData['firstName'],
-            $userData['lastName'],
-            $this->getRoles($userData['roles'])
+            $davUser->getEmailAddress(),
+            $davUser->getFirstName(),
+            $davUser->getLastName(),
+            $this->getFobiRoles($this->davUserService->getRoles($userId))
         );
     }
 
     /**
      * Creates a valid token for the BCM Fobi widgets
      *
-     * @param string $email
-     * @param string $firstName
-     * @param string $lastName
+     * @param string|null $email
+     * @param string|null $firstName
+     * @param string|null $lastName
      * @param array $roles A list of roles (as strings)
      *
      * @return string A token identifying the user, or an empty string if there is no user
      *
      * @throws InvalidConfigurationException
      */
-    protected function createToken(string $email, string $firstName, string $lastName, array $roles): string
+    protected function createToken(?string $email, ?string $firstName, ?string $lastName, array $roles): string
     {
         if (empty($email)) {
             return '';
@@ -125,9 +121,9 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
      * @param array $roles A list of flow roles
      * @return array
      */
-    protected function getRoles($roles): array
+    protected function getFobiRoles(array $roles): array
     {
-        if (!$roles) {
+        if (empty($roles)) {
             return [];
         }
         return array_map(function ($role) {
