@@ -14,7 +14,8 @@ use Neos\Flow\Session\Exception\SessionNotStartedException;
 use Psr\Log\LoggerInterface as LoggerInterface;
 use CRON\ObisIntegration\Service\DavUserService;
 
-class BCMFobiHelper implements ProtectedContextAwareInterface
+/** @noinspection PhpUnused */
+class FobiHelper implements ProtectedContextAwareInterface
 {
 
     /**
@@ -61,7 +62,7 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
     }
 
     /**
-     * Creates a valid token for the BCM Fobi widgets
+     * Creates a valid token for the Fobi widgets
      *
      * @param string|null $email
      * @param string|null $firstName
@@ -104,7 +105,7 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
             $jwt = JWT::encode($token, $key);
         } catch (Exception $e) {
             $this->logger->warning(
-                sprintf('BCMFobiHelper::createToken: Error encoding token: %s', $e->getMessage()),
+                sprintf('FobiHelper::createToken: Error encoding token: %s', $e->getMessage()),
                 LogEnvironment::fromMethodName(__METHOD__)
             );
             return '';
@@ -114,7 +115,7 @@ class BCMFobiHelper implements ProtectedContextAwareInterface
     }
 
     /**
-     * Map flow roles to strings to be used in BCMFobi
+     * Map flow roles to strings to be used in DAV.Fobi
      *
      * Use the CRON.DAV.Fobi.rolesMapping setting
      *

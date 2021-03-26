@@ -10,4 +10,4 @@ Neos:
           label: Widget
   Fusion:
     defaultContext:
-      CRON.BCMFobi: CRON\DAV\Fobi\Eel\Helper\BCMFobiHelper
+      CRON.DAV.Fobi: CRON\DAV\Fobi\Eel\Helper\FobiHelper
