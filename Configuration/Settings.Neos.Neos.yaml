@@ -1,0 +1,13 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        CRON.DAV.Fobi: true
+    nodeTypes:
+      groups:
+        widget:
+          position: 'after plugins'
+          label: Widget
+  Fusion:
+    defaultContext:
+      CRON.DAV.Fobi: CRON\DAV\Fobi\Eel\Helper\FobiHelper

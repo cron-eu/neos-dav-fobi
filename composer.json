@@ -7,7 +7,7 @@
         "neos/flow": "*",
         "neos/eel": "*",
         "firebase/php-jwt": "*",
-        "cron/neos-obisintegration": "*"
+        "cron/neos-obisintegration": "^2.0"
     },
     "autoload": {
         "psr-4": {
