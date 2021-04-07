@@ -2,6 +2,7 @@
 
 namespace CRON\DAV\Fobi\Eel\Helper;
 
+use CRON\ObisIntegration\ObisException;
 use DateInterval;
 use DateTime;
 use Exception;
@@ -43,21 +44,31 @@ class FobiHelper implements ProtectedContextAwareInterface
      * @throws InvalidConfigurationException
      * @throws \Neos\Flow\Exception
      * @throws SessionNotStartedException
+     * @throws ObisException
      */
     public function getToken(): string
     {
-        $davUser = $this->davUserService->getCurrentDavUser();
-        if ($davUser == null) {
+        $username = $this->davUserService->getCurrentUsername();
+        if ($username == null) {
             return '';
         }
-        $username = $davUser->getEmailAddress();
-        $userId = $this->davUserService->getUserId($username);
+
+        $davUser = $this->davUserService->getCurrentDavUser();
+        $roles = $this->davUserService->getCurrentRoles();
+
+        if (preg_match('/@/', $username)) {
+            // usually the username is the email
+            $email = $username;
+        } else {
+            // cope with older legacy usernames which are not the email address, use the email from the appData container
+            $email = $davUser->getEmailAddress();
+        }
 
         return $this->createToken(
-            $davUser->getEmailAddress(),
+            $email,
             $davUser->getFirstName(),
             $davUser->getLastName(),
-            $this->getFobiRoles($this->davUserService->getRoles($userId))
+            $this->getFobiRoles($roles)
         );
     }
 
