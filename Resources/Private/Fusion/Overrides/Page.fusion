@@ -1,17 +1,6 @@
 prototype(Neos.Neos:Page) {
     head {
-        stylesheets.fobi = Neos.Fusion:Tag {
-            tagName = 'link'
-
-            attributes {
-                rel = 'stylesheet'
-
-                href = Neos.Fusion:ResourceUri {
-                    path = 'resource://CRON.DAV.Fobi/Public/styles/fobi-widget.min.css'
-                }
-            }
-        }
-
+        stylesheets.fobi = CRON.DAV.Fobi:HeadStyleSheet
         javascripts = CRON.DAV.Fobi:HeadJavaScript
     }
     fobi = CRON.DAV.Fobi:BodyJavaScript
