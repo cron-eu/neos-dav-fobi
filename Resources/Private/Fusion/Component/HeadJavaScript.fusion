@@ -1,0 +1,21 @@
+prototype(CRON.DAV.Fobi:HeadJavaScript) < prototype(Neos.Fusion:Component) {
+
+    templatePath = 'resource://CRON.DAV.Fobi/Private/Templates/Page/Default.html'
+
+    # Don't cache this JavaScript, as it contains a token with session data (session token)
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = ''
+        }
+    }
+    @position = 'end'
+
+    renderer = Neos.Fusion:Renderer {
+        renderer = Neos.Fusion:Template {
+            templatePath = ${props.templatePath}
+            sectionName = 'headScripts'
+            jwt = ${CRON.DAV.Fobi.getToken()}
+        }
+    }
+}
