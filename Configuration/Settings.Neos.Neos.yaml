@@ -3,6 +3,11 @@ Neos:
     fusion:
       autoInclude:
         CRON.DAV.Fobi: true
+    userInterface:
+      translation:
+        autoInclude:
+          'CRON.DAV.Fobi':
+            - NodeTypes/*
     nodeTypes:
       groups:
         widget:
