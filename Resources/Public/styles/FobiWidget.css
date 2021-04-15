@@ -1,20 +1,20 @@
-.widget-container-fobi {
+.neos-dav-fobi-widget {
   display: flex;
   justify-content: center
 }
 
-.widget-container-fobi .widget-container {
+.neos-dav-fobi-widget .widget-container {
   min-width: 225px
 }
 
-.widget-container-fobi.width-25 .widget-container {
+.neos-dav-fobi-widget.width-25 .widget-container {
   width: 25%
 }
 
-.widget-container-fobi.width-50 .widget-container {
+.neos-dav-fobi-widget.width-50 .widget-container {
   width: 50%
 }
 
-.widget-container-fobi.width-100 .widget-container {
+.neos-dav-fobi-widget.width-100 .widget-container {
   width: 100%
 }
