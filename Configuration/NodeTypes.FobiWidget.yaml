@@ -131,7 +131,7 @@
                 label: i18n
               multi-slider:
                 label: i18n
-    widgetSize:
+    widgetClass:
       type: string
       defaultValue: 'width-50'
       ui:

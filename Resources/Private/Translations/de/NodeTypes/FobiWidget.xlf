@@ -86,16 +86,16 @@
             <trans-unit id="properties.trainingType.selectBoxEditor.values.multi-slider" xml:space="preserve">
                 <source>Multi Slider</source>
             </trans-unit>
-            <trans-unit id="properties.widgetSize" xml:space="preserve">
+            <trans-unit id="properties.widgetClass" xml:space="preserve">
                 <source>Widget Größe, auf der Seite</source>
             </trans-unit>
-            <trans-unit id="properties.widgetSize.selectBoxEditor.values.width-25" xml:space="preserve">
+            <trans-unit id="properties.widgetClass.selectBoxEditor.values.width-25" xml:space="preserve">
                 <source>25%</source>
             </trans-unit>
-            <trans-unit id="properties.widgetSize.selectBoxEditor.values.width-50" xml:space="preserve">
+            <trans-unit id="properties.widgetClass.selectBoxEditor.values.width-50" xml:space="preserve">
                 <source>50%</source>
             </trans-unit>
-            <trans-unit id="properties.widgetSize.selectBoxEditor.values.width-100" xml:space="preserve">
+            <trans-unit id="properties.widgetClass.selectBoxEditor.values.width-100" xml:space="preserve">
                 <source>100%</source>
             </trans-unit>
         </body>
