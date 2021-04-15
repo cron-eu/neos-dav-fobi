@@ -8,6 +8,3 @@ Neos:
         widget:
           position: 'after plugins'
           label: Widget
-  Fusion:
-    defaultContext:
-      CRON.DAV.Fobi: CRON\DAV\Fobi\Eel\Helper\FobiHelper

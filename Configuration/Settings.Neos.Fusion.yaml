@@ -1,0 +1,4 @@
+Neos:
+  Fusion:
+    defaultContext:
+      CRON.DAV.Fobi: CRON\DAV\Fobi\Eel\Helper\FobiHelper
