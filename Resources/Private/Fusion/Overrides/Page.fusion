@@ -1,6 +1,5 @@
 prototype(Neos.Neos:Page) {
     head {
-        stylesheets.fobi = CRON.DAV.Fobi:HeadStyleSheet
         javascripts = CRON.DAV.Fobi:HeadJavaScript
     }
     fobi = CRON.DAV.Fobi:BodyJavaScript
