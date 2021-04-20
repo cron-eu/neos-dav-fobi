@@ -1,0 +1,8 @@
+prototype(Neos.Neos:Page) {
+    head {
+        javascripts = CRON.DAV.Fobi:HeadJavaScript
+    }
+    fobi = CRON.DAV.Fobi:BodyJavaScript
+}
+
+

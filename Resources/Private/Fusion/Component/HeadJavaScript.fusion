@@ -1,0 +1,25 @@
+prototype(CRON.DAV.Fobi:HeadJavaScript) < prototype(Neos.Fusion:Component) {
+
+    templatePath = 'resource://CRON.DAV.Fobi/Private/Templates/Page/Default.html'
+
+    # Don't cache this JavaScript, as it contains a token with session data (session token)
+    # We do not require any context for this uncached element See for history here https://cron.slack.com/archives/C026UQR7L/p1618568046009000
+    # However, we can not leave the context completely empty, otherwise this error message will appear:
+    # "An uncached segment must have one or more context variable names"
+
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = ''
+        }
+    }
+    @position = 'end'
+
+    renderer = Neos.Fusion:Renderer {
+        renderer = Neos.Fusion:Template {
+            templatePath = ${props.templatePath}
+            sectionName = 'headScripts'
+            jwt = ${CRON.DAV.Fobi.getToken()}
+        }
+    }
+}

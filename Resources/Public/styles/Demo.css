@@ -1,0 +1,20 @@
+.neos-dav-fobi-widget {
+  display: flex;
+  justify-content: center
+}
+
+.neos-dav-fobi-widget .widget-container {
+  min-width: 225px
+}
+
+.neos-dav-fobi-widget.width-25 .widget-container {
+  width: 25%
+}
+
+.neos-dav-fobi-widget.width-50 .widget-container {
+  width: 50%
+}
+
+.neos-dav-fobi-widget.width-100 .widget-container {
+  width: 100%
+}

@@ -2,7 +2,7 @@
   superTypes:
     'Neos.Neos:Content': true
   ui:
-    label: Fobi-Widget
+    label: i18n
     icon: icon-leanpub
     group: widget
     inspector:
@@ -15,7 +15,7 @@
       type: string
       defaultValue: 'questionnaire'
       ui:
-        label: 'Widget Type'
+        label: i18n
         reloadPageIfChanged: true
         inspector:
           group: 'option'
@@ -23,21 +23,21 @@
           editorOptions:
             values:
               questionnaire:
-                label: 'Questionnaire'
+                label: i18n
               training:
-                label: 'Training'
+                label: i18n
               trainingMulti:
-                label: 'Training Multi'
+                label: i18n
               cockpit:
-                label: 'Cockpit'
+                label: i18n
     questionnaireShape:
       type: string
       defaultValue: 'min'
       ui:
-        label: 'Shape'
+        label: i18n
         help:
-          message: 'Shape expression'
-        reloadIfChanged: true
+          message: i18n
+        reloadPageIfChanged: true
         inspector:
           group: 'option'
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
@@ -45,53 +45,53 @@
           editorOptions:
             values:
               min:
-                label: 'min'
+                label: i18n
               max:
-                label: 'max'
+                label: i18n
     questionnaireId:
       type: string
       ui:
-        label: 'Questionnaire Id'
-        reloadIfChanged: true
+        label: i18n
+        reloadPageIfChanged: true
         help:
-          message: 'The ID can be determined from the URL when editing a questionnaire.'
+          message: i18n
         inspector:
           group: 'option'
           hidden: "ClientEval:node.properties.widget == 'questionnaire' ? false : true"
     trainingId:
       type: string
       ui:
-        label: 'Training Id'
-        reloadIfChanged: true
+        label: i18n
+        reloadPageIfChanged: true
         help:
-          message: 'The ID can be determined from the URL when editing a questionnaire.'
+          message: i18n
         inspector:
           group: 'option'
           hidden: "ClientEval:node.properties.widget == 'training' ? false : true"
     trainingDisturber:
       type: boolean
       ui:
-        label: 'Disturber'
+        label: i18n
         help:
-          message: 'Show disturber with end date yes / no'
+          message: i18n
         inspector:
           group: 'option'
           hidden: "ClientEval:node.properties.widget == 'training' ? false : true"
     trainingEffort:
       type: boolean
       ui:
-        label: 'Effort'
+        label: i18n
         help:
-          message: 'Show end date and learning effort yes / no'
+          message: i18n
         inspector:
           group: 'option'
           hidden: "ClientEval:node.properties.widget == 'training' ? false : true"
     trainingPoints:
       type: boolean
       ui:
-        label: 'Points'
+        label: i18n
         help:
-          message: 'Show BAK points yes / no'
+          message: i18n
         inspector:
           group: 'option'
           hidden: "ClientEval:node.properties.widget == 'training' ? false : true"
@@ -99,10 +99,10 @@
       type: string
       defaultValue: 'min'
       ui:
-        label: 'Shape'
+        label: i18n
         help:
-          message: 'Shape expression'
-        reloadIfChanged: true
+          message: i18n
+        reloadPageIfChanged: true
         inspector:
           group: 'option'
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
@@ -110,15 +110,15 @@
           editorOptions:
             values:
               min:
-                label: 'min'
+                label: i18n
               max:
-                label: 'max'
+                label: i18n
     trainingType:
       type: string
       defaultValue: 'multitext'
       ui:
-        label: 'Target mode'
-        reloadIfChanged: true
+        label: i18n
+        reloadPageIfChanged: true
         inspector:
           group: 'option'
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
@@ -126,8 +126,25 @@
           editorOptions:
             values:
               multi-text:
-                label: 'multi text'
+                label: i18n
               multi-teaser:
-                label: 'multi teaser'
+                label: i18n
               multi-slider:
-                label: 'multi slider'
+                label: i18n
+    widgetClass:
+      type: string
+      defaultValue: 'width-50'
+      ui:
+        label: i18n
+        reloadPageIfChanged: true
+        inspector:
+          group: 'option'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              width-25:
+                label: i18n
+              width-50:
+                label: i18n
+              width-100:
+                label: i18n

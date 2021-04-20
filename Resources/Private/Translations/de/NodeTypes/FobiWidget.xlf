@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="CRON.DAV.Fobi" source-language="de" datatype="plaintext">
+        <body>
+            <trans-unit id="ui.label" xml:space="preserve">
+                <source>Fobi-Widget</source>
+            </trans-unit>
+            <trans-unit id="properties.widget" xml:space="preserve">
+                <source>Widget Typ</source>
+            </trans-unit>
+            <trans-unit id="properties.widget.selectBoxEditor.values.questionnaire" xml:space="preserve">
+                <source>Fragebogen</source>
+            </trans-unit>
+            <trans-unit id="properties.widget.selectBoxEditor.values.training" xml:space="preserve">
+                <source>Training</source>
+            </trans-unit>
+            <trans-unit id="properties.widget.selectBoxEditor.values.trainingMulti" xml:space="preserve">
+                <source>Training Multi</source>
+            </trans-unit>
+            <trans-unit id="properties.widget.selectBoxEditor.values.cockpit" xml:space="preserve">
+                <source>Cockpit</source>
+            </trans-unit>
+            <trans-unit id="properties.questionnaireShape" xml:space="preserve">
+                <source>Fragebogen größe</source>
+            </trans-unit>
+            <trans-unit id="properties.questionnaireShape.ui.help.message" xml:space="preserve">
+                <source>Die Größe des Fragebogens</source>
+            </trans-unit>
+            <trans-unit id="properties.questionnaireShape.selectBoxEditor.values.min" xml:space="preserve">
+                <source>Min</source>
+            </trans-unit>
+            <trans-unit id="properties.questionnaireShape.selectBoxEditor.values.max" xml:space="preserve">
+                <source>Max</source>
+            </trans-unit>
+            <trans-unit id="properties.questionnaireId" xml:space="preserve">
+                <source>Fragebogen ID</source>
+            </trans-unit>
+            <trans-unit id="properties.questionnaireId.ui.help.message" xml:space="preserve">
+                <source>Die ID, kann beim bearbeiten eines Fragebogens aus der URL ermittelt werden</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingId" xml:space="preserve">
+                <source>Training ID</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingId.ui.help.message" xml:space="preserve">
+                <source>Die ID, kann beim bearbeiten eines Trainings aus der URL ermittelt werden</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingDisturber" xml:space="preserve">
+                <source>Störer</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingDisturber.ui.help.message" xml:space="preserve">
+                <source>Störer mit Enddatum anzeigen, ja / nein</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingEffort" xml:space="preserve">
+                <source>Aufwand</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingEffort.ui.help.message" xml:space="preserve">
+                <source>Enddatum und Lernaufwand anzeigen, ja / nein'</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingPoints" xml:space="preserve">
+                <source>BAK-Punkte</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingPoints.ui.help.message" xml:space="preserve">
+                <source>BAK-Punkte anzeigen ja / nein</source>
+            </trans-unit>
+            <trans-unit id="properties.cockpitShape" xml:space="preserve">
+                <source>Cockpit Größe</source>
+            </trans-unit>
+            <trans-unit id="properties.cockpitShape.ui.help.message" xml:space="preserve">
+                <source>Die Größe des Cockpits</source>
+            </trans-unit>
+            <trans-unit id="properties.cockpitShape.selectBoxEditor.values.min" xml:space="preserve">
+                <source>Min</source>
+            </trans-unit>
+            <trans-unit id="properties.cockpitShape.selectBoxEditor.values.max" xml:space="preserve">
+                <source>Max</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingType" xml:space="preserve">
+                <source>Zielmodus</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingType.selectBoxEditor.values.multi-text" xml:space="preserve">
+                <source>Multi Text</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingType.selectBoxEditor.values.multi-teaser" xml:space="preserve">
+                <source>Multi Teaser</source>
+            </trans-unit>
+            <trans-unit id="properties.trainingType.selectBoxEditor.values.multi-slider" xml:space="preserve">
+                <source>Multi Slider</source>
+            </trans-unit>
+            <trans-unit id="properties.widgetClass" xml:space="preserve">
+                <source>Widget Größe, auf der Seite</source>
+            </trans-unit>
+            <trans-unit id="properties.widgetClass.selectBoxEditor.values.width-25" xml:space="preserve">
+                <source>25%</source>
+            </trans-unit>
+            <trans-unit id="properties.widgetClass.selectBoxEditor.values.width-50" xml:space="preserve">
+                <source>50%</source>
+            </trans-unit>
+            <trans-unit id="properties.widgetClass.selectBoxEditor.values.width-100" xml:space="preserve">
+                <source>100%</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

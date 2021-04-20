@@ -10,7 +10,7 @@ Make sure to allow `CRON.DAV.Fobi:FobiWidget` in the places where you want it to
 ## Features
 
 This Package contains:
-
+* A sample CSS for the widget size function see here ```Resources/Public/styles/Demo.css```
 * An Eel helper to generate a token to identify the user to be passed to the JS widget
 * A JS widget which is loaded from an external service, this also loads the CSS for the widget
 * NodeTypes which contains the widget for the Neos backend
