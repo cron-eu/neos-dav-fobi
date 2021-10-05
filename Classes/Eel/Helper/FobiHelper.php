@@ -11,6 +11,7 @@ use Neos\Flow\Annotations as Flow;
 use Firebase\JWT\JWT;
 use Neos\Flow\Configuration\Exception\InvalidConfigurationException;
 use Neos\Flow\Log\Utility\LogEnvironment;
+use Neos\Flow\Security\Context;
 use Neos\Flow\Session\Exception\SessionNotStartedException;
 use Psr\Log\LoggerInterface as LoggerInterface;
 use CRON\ObisIntegration\Service\DavUserService;
@@ -24,6 +25,13 @@ class FobiHelper implements ProtectedContextAwareInterface
      * @var DavUserService
      */
     protected $davUserService;
+
+    /**
+     * @Flow\Inject
+     * @var Context
+     */
+    protected $securityContext;
+
     /**
      * @Flow\Inject
      * @var LoggerInterface
@@ -54,7 +62,19 @@ class FobiHelper implements ProtectedContextAwareInterface
         }
 
         $davUser = $this->davUserService->getCurrentDavUser();
-        $roles = $this->davUserService->getCurrentRoles();
+        $obisRoles = $this->davUserService->getCurrentRoles();
+        $sessionRoles = $this->securityContext->getRoles();
+
+        // We want only the roles from Neos which we need for FOBI
+        $mappedRoles = [];
+        foreach ($sessionRoles as $key => $value) {
+          if (isset($this->settings['rolesMapping'][$key])) {
+              $mappedRoles[] = $key;
+            }
+        }
+
+        // Ensures after the arrays have been merged that the roles are always unique
+        $roles = array_unique($obisRoles + $mappedRoles);
 
         if (preg_match('/@/', $username)) {
             // usually the username is the email
