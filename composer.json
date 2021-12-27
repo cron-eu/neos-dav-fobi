@@ -7,7 +7,7 @@
         "neos/flow": "*",
         "neos/eel": "*",
         "firebase/php-jwt": "*",
-        "cron/neos-obisintegration": "^2.1"
+        "cron/neos-obisintegration": "dev-DAVPTA-729-neos-upgrade-5"
     },
     "autoload": {
         "psr-4": {
