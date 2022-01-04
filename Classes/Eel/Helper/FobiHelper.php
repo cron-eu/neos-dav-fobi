@@ -13,7 +13,7 @@ use Neos\Flow\Configuration\Exception\InvalidConfigurationException;
 use Neos\Flow\Log\Utility\LogEnvironment;
 use Neos\Flow\Security\Context;
 use Neos\Flow\Session\Exception\SessionNotStartedException;
-use Psr\Log\LoggerInterface as LoggerInterface;
+use Psr\Log\LoggerInterface;
 use CRON\ObisIntegration\Service\DavUserService;
 
 /** @noinspection PhpUnused */
@@ -33,16 +33,24 @@ class FobiHelper implements ProtectedContextAwareInterface
     protected $securityContext;
 
     /**
-     * @Flow\Inject
+     * @Flow\InjectConfiguration(package="CRON.DAV.Fobi")
+     * @var array
+     */
+    protected $settings = [];
+
+    /**
      * @var LoggerInterface
      */
     protected $logger;
 
     /**
-     * @Flow\InjectConfiguration(package="CRON.DAV.Fobi")
-     * @var array
+     * @param LoggerInterface $logger
+     * @return void
      */
-    protected $settings = [];
+    public function injectLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 
     /**
      * Eel helper: an jwt token identifying the user to be passed to the JS widget
@@ -57,7 +65,7 @@ class FobiHelper implements ProtectedContextAwareInterface
     public function getToken(): string
     {
         $username = $this->davUserService->getCurrentUsername();
-        if ($username == null) {
+        if (empty($username)) {
             return '';
         }
 
@@ -76,16 +84,8 @@ class FobiHelper implements ProtectedContextAwareInterface
         // Ensures after the arrays have been merged that the roles are always unique
         $roles = array_unique($obisRoles + $mappedRoles);
 
-        if (preg_match('/@/', $username)) {
-            // usually the username is the email
-            $email = $username;
-        } else {
-            // cope with older legacy usernames which are not the email address, use the email from the appData container
-            $email = $davUser->getEmailAddress();
-        }
-
         return $this->createToken(
-            $email,
+            $username, // in the latest versions the username is always the mail address
             $davUser->getFirstName(),
             $davUser->getLastName(),
             $this->getFobiRoles($roles)

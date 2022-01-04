@@ -3,11 +3,11 @@
     "type": "neos-package",
     "name": "cron/dav-fobi",
     "require": {
-        "neos/neos": "*",
-        "neos/flow": "*",
-        "neos/eel": "*",
+        "neos/neos": "^4.3 || ^5.0",
+        "neos/flow": "^5.3 || ^6.0",
+        "neos/eel": "^5.3 || ^6.0",
         "firebase/php-jwt": "*",
-        "cron/neos-obisintegration": "^2.1"
+        "cron/neos-obisintegration": "^3.0"
     },
     "autoload": {
         "psr-4": {
