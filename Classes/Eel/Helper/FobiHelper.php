@@ -13,7 +13,7 @@ use Neos\Flow\Configuration\Exception\InvalidConfigurationException;
 use Neos\Flow\Log\Utility\LogEnvironment;
 use Neos\Flow\Security\Context;
 use Neos\Flow\Session\Exception\SessionNotStartedException;
-use Psr\Log\LoggerInterface as LoggerInterface;
+use Psr\Log\LoggerInterface;
 use CRON\ObisIntegration\Service\DavUserService;
 
 /** @noinspection PhpUnused */
@@ -33,16 +33,24 @@ class FobiHelper implements ProtectedContextAwareInterface
     protected $securityContext;
 
     /**
-     * @Flow\Inject
+     * @Flow\InjectConfiguration(package="CRON.DAV.Fobi")
+     * @var array
+     */
+    protected $settings = [];
+
+    /**
      * @var LoggerInterface
      */
     protected $logger;
 
     /**
-     * @Flow\InjectConfiguration(package="CRON.DAV.Fobi")
-     * @var array
+     * @param LoggerInterface $logger
+     * @return void
      */
-    protected $settings = [];
+    public function injectLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 
     /**
      * Eel helper: an jwt token identifying the user to be passed to the JS widget
