@@ -65,7 +65,7 @@ class FobiHelper implements ProtectedContextAwareInterface
     public function getToken(): string
     {
         $username = $this->davUserService->getCurrentUsername();
-        if ($username == null) {
+        if (empty($username)) {
             return '';
         }
 
@@ -84,16 +84,8 @@ class FobiHelper implements ProtectedContextAwareInterface
         // Ensures after the arrays have been merged that the roles are always unique
         $roles = array_unique($obisRoles + $mappedRoles);
 
-        if (preg_match('/@/', $username)) {
-            // usually the username is the email
-            $email = $username;
-        } else {
-            // cope with older legacy usernames which are not the email address, use the email from the appData container
-            $email = $davUser->getEmailAddress();
-        }
-
         return $this->createToken(
-            $email,
+            $username, // in the latest versions the username is always the mail address
             $davUser->getFirstName(),
             $davUser->getLastName(),
             $this->getFobiRoles($roles)
