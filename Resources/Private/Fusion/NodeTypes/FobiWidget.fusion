@@ -1,0 +1,14 @@
+prototype(CRON.DAV.Fobi:FobiWidget) < prototype(Neos.Neos:Content) {
+    templatePath = 'resource://CRON.DAV.Fobi/Private/Templates/NodeTypes/FobiWidget.html'
+
+    widget = ${q(node).property('widget')}
+    questionnaireShape = ${q(node).property('questionnaireShape')}
+    questionnaireId = ${q(node).property('questionnaireId')}
+    trainingId = ${q(node).property('trainingId')}
+    trainingDisturber = ${q(node).property('trainingDisturber')}
+    trainingEffort = ${q(node).property('trainingEffort')}
+    trainingPoints = ${q(node).property('trainingPoints')}
+    cockpitShape = ${q(node).property('cockpitShape')}
+    trainingType = ${q(node).property('trainingType')}
+    widgetClass = ${q(node).property('widgetClass')}
+}
