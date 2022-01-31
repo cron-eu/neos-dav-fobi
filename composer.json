@@ -3,9 +3,9 @@
     "type": "neos-package",
     "name": "cron/dav-fobi",
     "require": {
-        "neos/neos": "^4.3 || ^5.0",
-        "neos/flow": "^5.3 || ^6.0",
-        "neos/eel": "^5.3 || ^6.0",
+        "neos/neos": "^4.3 || ^5.0 || ^7.0",
+        "neos/flow": "^5.3 || ^6.0 || ^7.0",
+        "neos/eel": "^5.3 || ^6.0 || ^7.0",
         "firebase/php-jwt": "*",
         "cron/neos-obisintegration": "^3.0"
     },
