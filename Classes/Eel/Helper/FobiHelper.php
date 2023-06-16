@@ -24,24 +24,24 @@ class FobiHelper implements ProtectedContextAwareInterface
      * @Flow\Inject
      * @var DavUserService
      */
-    protected $davUserService;
+    protected DavUserService $davUserService;
 
     /**
      * @Flow\Inject
      * @var Context
      */
-    protected $securityContext;
+    protected Context $securityContext;
 
     /**
      * @Flow\InjectConfiguration(package="CRON.DAV.Fobi")
      * @var array
      */
-    protected $settings = [];
+    protected array $settings = [];
 
     /**
      * @var LoggerInterface
      */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /**
      * @param LoggerInterface $logger
