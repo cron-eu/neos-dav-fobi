@@ -19,7 +19,6 @@ use CRON\ObisIntegration\Service\DavUserService;
 /** @noinspection PhpUnused */
 class FobiHelper implements ProtectedContextAwareInterface
 {
-
     /**
      * @Flow\Inject
      * @var DavUserService
@@ -53,7 +52,7 @@ class FobiHelper implements ProtectedContextAwareInterface
     }
 
     /**
-     * Eel helper: an jwt token identifying the user to be passed to the JS widget
+     * Eel helper: a jwt token identifying the user to be passed to the JS widget
      *
      * @return string A token identifying the user, or an empty string if there is no user
      *
@@ -73,7 +72,7 @@ class FobiHelper implements ProtectedContextAwareInterface
         $obisRoles = $this->davUserService->getCurrentRoles();
         $sessionRoles = $this->securityContext->getRoles();
 
-        // We want only the roles from Neos which we need for FOBI
+        // We want only the roles from Neos which we need for Fobi
         $mappedRoles = [];
         foreach ($sessionRoles as $key => $value) {
           if (isset($this->settings['rolesMapping'][$key])) {
