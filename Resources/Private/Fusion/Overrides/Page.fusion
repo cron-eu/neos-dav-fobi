@@ -6,10 +6,9 @@ prototype(Neos.Neos:Page) {
             }
         }
     }
-    body {
-        javascripts {
-            fobiBodyJavaScript = CRON.DAV.Fobi:BodyJavaScript
-        }
+
+    fobiBodyJavaScript = CRON.DAV.Fobi:BodyJavaScript {
+        @position = 'before closingBodyTag'
     }
 }
 
