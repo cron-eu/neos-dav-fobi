@@ -1,0 +1,19 @@
+prototype(CRON.DAV.Fobi:HeadJavaScript) < prototype(Neos.Fusion:Component) {
+
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'documentNode'
+        }
+    }
+
+    @if.isAuthenticated = ${Security.isAuthenticated()}
+
+    jwt = ${CRON.DAV.Fobi.getToken()}
+
+    renderer = afx`
+        <script type="text/javascript">
+            var davJWT = "{props.jwt}";
+        </script>
+    `
+}
