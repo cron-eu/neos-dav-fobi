@@ -1,0 +1,11 @@
+prototype(CRON.DAV.Fobi:BodyJavaScript) < prototype(Neos.Fusion:Component) {
+
+    @if.hasFobiWidgetInContent = ${q(documentNode).children('[instanceof Neos.Neos:ContentCollection]').find('[instanceof CRON.DAV.Fobi:FobiWidget]').count() > 0}
+
+    widgetLoaderUri = ${Configuration.setting('CRON.DAV.Fobi.widgetLoaderUri')}
+
+    renderer = afx`
+        <script defer src={props.widgetLoaderUri} type="text/javascript"></script>
+    `
+}
+
