@@ -1,8 +1,15 @@
 prototype(Neos.Neos:Page) {
     head {
-        javascripts = CRON.DAV.Fobi:HeadJavaScript
+        javascripts {
+            fobiHeadJavaScript = CRON.DAV.Fobi:HeadJavaScript {
+                @position = 'end'
+            }
+        }
     }
-    fobi = CRON.DAV.Fobi:BodyJavaScript
+
+    fobiBodyJavaScript = CRON.DAV.Fobi:BodyJavaScript {
+        @position = 'before closingBodyTag'
+    }
 }
 
 
