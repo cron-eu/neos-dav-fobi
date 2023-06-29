@@ -46,7 +46,7 @@ class FobiHelper implements ProtectedContextAwareInterface
      * @param LoggerInterface $logger
      * @return void
      */
-    public function injectLogger(LoggerInterface $logger)
+    public function injectLogger(LoggerInterface $logger): void
     {
         $this->logger = $logger;
     }
