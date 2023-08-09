@@ -3,7 +3,7 @@
 ## Abstract
 
 This package provides a widget for the DAV training tool. It integrates the Fobi widgets from BCM.
-Widgets can added as Nodes in the backend.
+Widgets can be added as Nodes in the backend.
 
 Make sure to allow `CRON.DAV.Fobi:FobiWidget` in the places where you want it to be added.
 
