@@ -1,6 +1,4 @@
-prototype(CRON.DAV.Fobi:FobiWidget) < prototype(Neos.Neos:Content) {
-    templatePath = 'resource://CRON.DAV.Fobi/Private/Templates/NodeTypes/FobiWidget.html'
-
+prototype(CRON.DAV.Fobi:FobiWidget) < prototype(Neos.Neos:ContentComponent) {
     widget = ${q(node).property('widget')}
     questionnaireShape = ${q(node).property('questionnaireShape')}
     questionnaireId = ${q(node).property('questionnaireId')}
@@ -11,4 +9,39 @@ prototype(CRON.DAV.Fobi:FobiWidget) < prototype(Neos.Neos:Content) {
     cockpitShape = ${q(node).property('cockpitShape')}
     trainingType = ${q(node).property('trainingType')}
     widgetClass = ${q(node).property('widgetClass')}
+
+    renderer = Neos.Fusion:Tag {
+        tagName = 'div'
+        attributes.class = ${'neos-dav-fobi-widget ' + props.widgetClass}
+
+        content = Neos.Fusion:Case {
+            questionnaire {
+                condition = ${props.widget == 'questionnaire'}
+                renderer = afx`
+                    <div class="widget-container" data-type="questionnaire" data-shape={props.questionnaireShape}
+                         data-questionnaireId={props.questionnaireId}></div>
+                `
+            }
+            training {
+                condition = ${props.widget == 'training'}
+                renderer = afx`
+                    <div class="widget-container" data-type="training" data-training-type="single" data-training-id={props.trainingId}
+                         data-disturber={props.trainingDisturber ? 'true' : 'false'} data-effort={props.trainingEffort ? 'true' : 'false'}
+                         data-points={props.trainingPoints ? 'true' : 'false'}></div>
+                `
+            }
+            trainingMulti {
+                condition = ${props.widget == 'trainingMulti'}
+                renderer = afx`
+                    <div class="widget-container" data-type="training" data-training-type={props.trainingType}></div>
+                `
+            }
+            cockpit {
+                condition = ${props.widget == 'cockpit'}
+                renderer = afx`
+                    <div class="widget-container" data-type="cockpit" data-training-type={props.cockpitShape}></div>
+                `
+            }
+        }
+    }
 }
