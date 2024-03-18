@@ -31,11 +31,20 @@ prototype(CRON.DAV.Fobi:FobiWidget.Questionnaire) < prototype(Neos.Fusion:Compon
     questionnaireShape = ${q(node).property('questionnaireShape')}
     questionnaireId = ${q(node).property('questionnaireId')}
 
-    renderer = afx`
-        <div class="widget-container" data-type="questionnaire"
-             data-shape={props.questionnaireShape}
-             data-questionnaireId={props.questionnaireId}></div>
-    `
+    renderer = Neos.Fusion:Case {
+        showBackendHintOnEmptyId {
+            condition = ${!props.questionnaireId && node.context.inBackend}
+            renderer = ${I18n.translate('CRON.DAV.Fobi:Backend:noQuestionnaireIdHint')}
+        }
+        default {
+            condition = ${props.questionnaireId}
+            renderer = afx`
+                <div class="widget-container" data-type="questionnaire"
+                     data-shape={props.questionnaireShape}
+                     data-questionnaireId={props.questionnaireId}></div>
+            `
+        }
+    }
 }
 
 prototype(CRON.DAV.Fobi:FobiWidget.Training) < prototype(Neos.Fusion:Component) {
@@ -44,21 +53,29 @@ prototype(CRON.DAV.Fobi:FobiWidget.Training) < prototype(Neos.Fusion:Component) 
     trainingEffort = ${q(node).property('trainingEffort')}
     trainingPoints = ${q(node).property('trainingPoints')}
 
-    renderer = afx`
-        <div class="widget-container" data-type="training" data-training-type="single"
-             data-training-id={props.trainingId}
-             data-disturber={props.trainingDisturber ? 'true' : 'false'}
-             data-effort={props.trainingEffort ? 'true' : 'false'}
-             data-points={props.trainingPoints ? 'true' : 'false'}></div>
-    `
+    renderer = Neos.Fusion:Case {
+        showBackendHintOnEmptyId {
+            condition = ${!props.trainingId && node.context.inBackend}
+            renderer = ${I18n.translate('CRON.DAV.Fobi:Backend:noTrainingIdHint')}
+        }
+        default {
+            condition = ${props.trainingId}
+            renderer = afx`
+                <div class="widget-container" data-type="training" data-training-type="single"
+                     data-training-id={props.trainingId}
+                     data-disturber={props.trainingDisturber ? 'true' : 'false'}
+                     data-effort={props.trainingEffort ? 'true' : 'false'}
+                     data-points={props.trainingPoints ? 'true' : 'false'}></div>
+            `
+        }
+    }
 }
 
 prototype(CRON.DAV.Fobi:FobiWidget.TrainingMulti) < prototype(Neos.Fusion:Component) {
     trainingType = ${q(node).property('trainingType')}
 
     renderer = afx`
-        <div class="widget-container" data-type="training"
-             data-training-type={props.trainingType}></div>
+        <div class="widget-container" data-type="training" data-training-type={props.trainingType}></div>
     `
 }
 
@@ -66,7 +83,6 @@ prototype(CRON.DAV.Fobi:FobiWidget.Cockpit) < prototype(Neos.Fusion:Component) {
     cockpitShape = ${q(node).property('cockpitShape')}
 
     renderer = afx`
-        <div class="widget-container" data-type="cockpit"
-             data-training-type={props.cockpitShape}></div>
+        <div class="widget-container" data-type="cockpit" data-training-type={props.cockpitShape}></div>
     `
 }

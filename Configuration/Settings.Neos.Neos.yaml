@@ -8,6 +8,7 @@ Neos:
         autoInclude:
           'CRON.DAV.Fobi':
             - NodeTypes/*
+            - Backend
     nodeTypes:
       groups:
         widget:
