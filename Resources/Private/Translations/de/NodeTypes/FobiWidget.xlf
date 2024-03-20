@@ -33,13 +33,13 @@
                 <source>Max</source>
             </trans-unit>
             <trans-unit id="properties.questionnaireId" xml:space="preserve">
-                <source>Fragebogen ID</source>
+                <source>Fragebogen-ID</source>
             </trans-unit>
             <trans-unit id="properties.questionnaireId.ui.help.message" xml:space="preserve">
                 <source>Die ID, kann beim bearbeiten eines Fragebogens aus der URL ermittelt werden</source>
             </trans-unit>
             <trans-unit id="properties.trainingId" xml:space="preserve">
-                <source>Training ID</source>
+                <source>Training-ID</source>
             </trans-unit>
             <trans-unit id="properties.trainingId.ui.help.message" xml:space="preserve">
                 <source>Die ID, kann beim bearbeiten eines Trainings aus der URL ermittelt werden</source>

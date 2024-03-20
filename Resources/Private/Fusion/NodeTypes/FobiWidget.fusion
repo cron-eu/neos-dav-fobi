@@ -1,14 +1,88 @@
-prototype(CRON.DAV.Fobi:FobiWidget) < prototype(Neos.Neos:Content) {
-    templatePath = 'resource://CRON.DAV.Fobi/Private/Templates/NodeTypes/FobiWidget.html'
-
+prototype(CRON.DAV.Fobi:FobiWidget) < prototype(Neos.Neos:ContentComponent) {
     widget = ${q(node).property('widget')}
+    widgetClass = ${q(node).property('widgetClass')}
+
+    renderer = Neos.Fusion:Tag {
+        tagName = 'div'
+        attributes.class = ${'neos-dav-fobi-widget ' + props.widgetClass}
+
+        content = Neos.Fusion:Case {
+            questionnaire {
+                condition = ${props.widget == 'questionnaire'}
+                renderer = CRON.DAV.Fobi:FobiWidget.Questionnaire
+            }
+            training {
+                condition = ${props.widget == 'training'}
+                renderer = CRON.DAV.Fobi:FobiWidget.Training
+            }
+            trainingMulti {
+                condition = ${props.widget == 'trainingMulti'}
+                renderer = CRON.DAV.Fobi:FobiWidget.TrainingMulti
+            }
+            cockpit {
+                condition = ${props.widget == 'cockpit'}
+                renderer = CRON.DAV.Fobi:FobiWidget.Cockpit
+            }
+        }
+    }
+}
+
+prototype(CRON.DAV.Fobi:FobiWidget.Questionnaire) < prototype(Neos.Fusion:Component) {
     questionnaireShape = ${q(node).property('questionnaireShape')}
     questionnaireId = ${q(node).property('questionnaireId')}
+
+    renderer = Neos.Fusion:Case {
+        showBackendHintOnEmptyId {
+            condition = ${!props.questionnaireId && node.context.inBackend}
+            renderer = ${I18n.translate('CRON.DAV.Fobi:Backend:noQuestionnaireIdHint')}
+        }
+        default {
+            condition = ${props.questionnaireId}
+            renderer = afx`
+                <div class="widget-container" data-type="questionnaire"
+                     data-shape={props.questionnaireShape}
+                     data-questionnaireId={props.questionnaireId}></div>
+            `
+        }
+    }
+}
+
+prototype(CRON.DAV.Fobi:FobiWidget.Training) < prototype(Neos.Fusion:Component) {
     trainingId = ${q(node).property('trainingId')}
     trainingDisturber = ${q(node).property('trainingDisturber')}
     trainingEffort = ${q(node).property('trainingEffort')}
     trainingPoints = ${q(node).property('trainingPoints')}
-    cockpitShape = ${q(node).property('cockpitShape')}
+
+    renderer = Neos.Fusion:Case {
+        showBackendHintOnEmptyId {
+            condition = ${!props.trainingId && node.context.inBackend}
+            renderer = ${I18n.translate('CRON.DAV.Fobi:Backend:noTrainingIdHint')}
+        }
+        default {
+            condition = ${props.trainingId}
+            renderer = afx`
+                <div class="widget-container" data-type="training" data-training-type="single"
+                     data-training-id={props.trainingId}
+                     data-disturber={props.trainingDisturber ? 'true' : 'false'}
+                     data-effort={props.trainingEffort ? 'true' : 'false'}
+                     data-points={props.trainingPoints ? 'true' : 'false'}></div>
+            `
+        }
+    }
+}
+
+prototype(CRON.DAV.Fobi:FobiWidget.TrainingMulti) < prototype(Neos.Fusion:Component) {
     trainingType = ${q(node).property('trainingType')}
-    widgetClass = ${q(node).property('widgetClass')}
+
+    renderer = afx`
+        <div class="widget-container" data-type="training" data-training-type={props.trainingType}></div>
+    `
+}
+
+prototype(CRON.DAV.Fobi:FobiWidget.Cockpit) < prototype(Neos.Fusion:Component) {
+    cockpitShape = ${q(node).property('cockpitShape')}
+
+    renderer = afx`
+        <div class="widget-container" data-type="cockpit" data-training-type={props.cockpitShape}></div>
+    `
 }
